@@ -21,6 +21,7 @@ const UserDetailPage = async ({params: {id}}: Props) => {
   const user: Contact = await res.json();
 
   if (!user.id) notFound();
+
   return (
     <>
       <div className="card lg:card-side bg-base-100 shadow-xl">
