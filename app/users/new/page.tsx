@@ -1,8 +1,10 @@
 "use client";
 
 import {FieldValues, useForm} from "react-hook-form";
-import {z} from "zod";
+import {string, z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import Toast from "@/app/components/Toast";
+import {useState} from "react";
 
 const schema = z.object({
   userName: z.string().min(3),
@@ -15,13 +17,27 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const NewUserForm = () => {
+  const [show, setShow] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: {errors},
   } = useForm<FormData>({resolver: zodResolver(schema)});
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  let message = "";
+
+  const onSubmit = (data: FieldValues) =>
+    fetch("http://localhost:3000/api/users/", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +118,7 @@ const NewUserForm = () => {
       <button type="submit" className="btn btn-primary mt-3">
         Submit
       </button>
+      <Toast>{}</Toast>
     </form>
   );
 };
