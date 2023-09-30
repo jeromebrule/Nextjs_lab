@@ -13,7 +13,7 @@ interface Contact {
   userCompanyName: string;
 }
 
-interface ApiData {
+interface ApiError {
   error: any;
 }
 

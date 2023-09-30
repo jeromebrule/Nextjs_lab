@@ -25,7 +25,6 @@ const UserDetailPage = async ({params: {id}}: Props) => {
         <div className="card-body">
           <h2 className="card-title">{user.userName}</h2>
           <ul>
-            <li>{user.userName}</li>
             <li>{user.userEmail}</li>
             <li>{user.userPhone}</li>
             <li>{user.userWebsite}</li>
