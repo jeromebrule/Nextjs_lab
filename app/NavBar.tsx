@@ -29,9 +29,6 @@ const NavBar = () => {
 
                 <ul className="p-2 bg-base-100">
                   <li>
-                    <a>Profile</a>
-                  </li>
-                  <li>
                     <div>
                       <Link href="/api/auth/signout">logout</Link>
                     </div>

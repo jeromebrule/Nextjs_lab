@@ -1,3 +1,5 @@
+"use client";
+
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {sort} from "fast-sort";
@@ -23,6 +25,7 @@ interface Props {
 const UserTable = ({sortOrder}: Props) => {
   const [users, setUsers] = useState<Contact[]>([]);
   const [error, setError] = useState<any>();
+  const [status, setStatus] = useState<any>();
 
   const fetchData = async () => {
     try {
@@ -42,7 +45,19 @@ const UserTable = ({sortOrder}: Props) => {
     fetchData();
   }, []);
 
-  const handleDeleteContact = (id: number) => console.log(id);
+  const handleDeleteContact = (id: number) =>
+    fetch(`http://localhost:3000/api/users/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify(id),
+    })
+      .then(function (response) {
+        setStatus(response.status);
+        fetchData();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   const handleEditContact = (id: number) => console.log(id);
 
   // const sortedUsers = sort(users).asc(
@@ -97,6 +112,13 @@ const UserTable = ({sortOrder}: Props) => {
             </td>
           </tr>
         ))}
+        {status === 200 && (
+          <div className="toast toast-end">
+            <div className="alert alert-info">
+              <span>Contact Deleted.</span>
+            </div>
+          </div>
+        )}
         {error && (
           <div className="toast toast-end">
             <div className="alert alert-error">
