@@ -11,7 +11,7 @@ interface Props {
 const UsersPage = ({searchParams: {sortOrder}}: Props) => {
   return (
     <>
-      <h1>Users</h1>
+      <h1>Contacts</h1>
       <Link href="/users/new" className="btn">
         Create contact
       </Link>

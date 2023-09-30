@@ -42,6 +42,8 @@ const UserTable = ({sortOrder}: Props) => {
     fetchData();
   }, []);
 
+  const handleDeleteContact = (id: number) => console.log(id);
+
   // const sortedUsers = sort(users).asc(
   //   sortOrder === "email" ? (user) => user.userEmail : (user) => user.userName
   // );
@@ -63,7 +65,7 @@ const UserTable = ({sortOrder}: Props) => {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {users.map((user, index) => (
           <tr key={user.id}>
             <td>
               <Link href={`/users/${encodeURIComponent(user.id)}`}>
@@ -75,7 +77,9 @@ const UserTable = ({sortOrder}: Props) => {
             <td>{user.userWebsite}</td>
             <td>{user.userCompanyName}</td>
             <td>
-              <RiDeleteBin5Line color="#ff6b81" size={20} />
+              <button onClick={() => handleDeleteContact(user.id)}>
+                <RiDeleteBin5Line color="#ff6b81" size={20} />
+              </button>
               <RiEdit2Line color="#ff6b81" size={20} />
             </td>
           </tr>
