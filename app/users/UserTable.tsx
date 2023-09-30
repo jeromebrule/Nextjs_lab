@@ -1,8 +1,7 @@
-"use client";
-
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {sort} from "fast-sort";
+import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 
 interface Contact {
   id: number;
@@ -60,6 +59,7 @@ const UserTable = ({sortOrder}: Props) => {
           </th>
           <th>Website</th>
           <th>Company Name</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -74,6 +74,10 @@ const UserTable = ({sortOrder}: Props) => {
             <td>{user.userEmail}</td>
             <td>{user.userWebsite}</td>
             <td>{user.userCompanyName}</td>
+            <td>
+              <RiDeleteBin5Line color="#ff6b81" size={20} />
+              <RiEdit2Line color="#ff6b81" size={20} />
+            </td>
           </tr>
         ))}
         {error && (

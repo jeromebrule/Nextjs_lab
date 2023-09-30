@@ -118,7 +118,6 @@ const NewUserForm = () => {
       <button type="submit" className="btn btn-primary mt-3">
         Submit
       </button>
-      <Toast>{}</Toast>
     </form>
   );
 };

@@ -5,7 +5,7 @@ const UserNotFoundPage = () => {
     <div>
       <h2>User Not Found</h2>
       <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
+      <Link href="/users">Return to Contact</Link>
     </div>
   );
 };
