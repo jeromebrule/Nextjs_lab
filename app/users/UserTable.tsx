@@ -78,11 +78,17 @@ const UserTable = ({sortOrder}: Props) => {
             <td>{user.userWebsite}</td>
             <td>{user.userCompanyName}</td>
             <td>
-              <button onClick={() => handleDeleteContact(user.id)}>
-                <RiDeleteBin5Line color="#ff6b81" size={20} />
+              <button
+                className="btn btn-circle btn-sm"
+                onClick={() => handleEditContact(user.id)}
+              >
+                <RiEdit2Line color="#000" size={20} />
               </button>
-              <button onClick={() => handleEditContact(user.id)}>
-                <RiEdit2Line color="#ff6b81" size={20} />
+              <button
+                className="ml-3 btn btn-circle btn-sm"
+                onClick={() => handleDeleteContact(user.id)}
+              >
+                <RiDeleteBin5Line color="#000" size={20} />
               </button>
             </td>
           </tr>

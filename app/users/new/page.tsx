@@ -1,10 +1,6 @@
-"use client";
-
 import {FieldValues, useForm} from "react-hook-form";
-import {string, z} from "zod";
+import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import Toast from "@/app/components/Toast";
-import {useState} from "react";
 
 const schema = z.object({
   userName: z.string().min(3),
@@ -17,8 +13,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const NewUserForm = () => {
-  const [show, setShow] = useState(false);
-
   const {
     register,
     handleSubmit,
