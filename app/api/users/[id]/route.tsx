@@ -1,58 +1,76 @@
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import schema from "../schema";
 import prisma from "@/prisma/client";
+import {getServerSession} from "next-auth/next";
+import {getToken} from "next-auth/jwt";
 
-export async function GET(request: NextRequest,
-  { params }: { params: { id: string } }) {
-  const user = await prisma.user.findUnique({
-    where: { id: params.id }
+export async function GET(
+  request: NextRequest,
+  {params}: {params: {id: string}}
+) {
+  const user = await prisma.contact.findUnique({
+    where: {id: parseInt(params.id)},
   });
 
-  if (!user)
-    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  if (!user) return NextResponse.json({error: "User not found"}, {status: 404});
   return NextResponse.json(user);
 }
 
-export async function PUT(request: NextRequest,
-  { params }: { params: { id: string } }) {
-
+export async function PUT(
+  request: NextRequest,
+  {params}: {params: {id: string}}
+) {
   const body = await request.json();
   const validation = schema.safeParse(body);
 
-  if (!validation.success)
-    return NextResponse.json(validation.error.errors, { status: 400 });
+  const secret = process.env.NEXTAUTH_SECRET;
+  const token = await getToken({req: request, secret: secret});
 
-  const user = await prisma.user.findUnique({
-    where: { id: params.id }
+  if (!token)
+    return NextResponse.json({error: "Not authentificated"}, {status: 401});
+
+  if (!validation.success)
+    return NextResponse.json(validation.error.errors, {status: 400});
+
+  const user = await prisma.contact.findUnique({
+    where: {id: parseInt(params.id)},
   });
 
-  if (!user)
-    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  if (!user) return NextResponse.json({error: "User not found"}, {status: 404});
 
-  const updatedUser = await prisma.user.update({
-    where: { id: user.id },
+  const updatedUser = await prisma.contact.update({
+    where: {id: user.id},
     data: {
-      name: body.name,
-      email: body.email
-    }
-  })
+      userName: body.userName,
+      userEmail: body.userEmail,
+      userPhone: body.userPhone,
+      userWebsite: body.userWebsite,
+      userCompanyName: body.userCompanyName,
+    },
+  });
 
-  return NextResponse.json(updatedUser)
+  return NextResponse.json(updatedUser);
 }
 
-export async function DELETE(request: NextRequest,
-  { params }: { params: { id: string } } ) {
+export async function DELETE(
+  request: NextRequest,
+  {params}: {params: {id: string}}
+) {
+  const user = await prisma.contact.findUnique({
+    where: {id: parseInt(params.id)},
+  });
 
-    const user = await prisma.user.findUnique({
-      where: { id: params.id }
-    });
+  const secret = process.env.NEXTAUTH_SECRET;
+  const token = await getToken({req: request, secret: secret});
 
-  if (!user)
-    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  if (!token)
+    return NextResponse.json({error: "Not authentificated"}, {status: 401});
 
-  const deletedUser = await prisma.user.delete({
-    where: { id: user.id }
-  })
+  if (!user) return NextResponse.json({error: "User not found"}, {status: 404});
 
-  return NextResponse.json({})
+  const deletedUser = await prisma.contact.delete({
+    where: {id: user.id},
+  });
+
+  return NextResponse.json({});
 }

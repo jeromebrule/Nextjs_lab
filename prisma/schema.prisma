@@ -48,6 +48,15 @@ model User {
   sessions       Session[]
 }
 
+model Contact {
+  id              Int     @id @default(autoincrement())
+  userName        String
+  userEmail       String? @unique
+  userPhone       String?
+  userWebsite     String?
+  userCompanyName String?
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique

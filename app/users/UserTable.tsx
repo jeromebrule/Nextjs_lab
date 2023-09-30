@@ -1,11 +1,14 @@
-import React from 'react'
-import Link from 'next/link';
-import { sort } from 'fast-sort';
+import React from "react";
+import Link from "next/link";
+import {sort} from "fast-sort";
 
-interface User{
+interface Contact {
   id: number;
-  name: string;
-  email: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+  userWebsite: string;
+  userCompanyName: string;
 }
 
 interface Props {
@@ -13,28 +16,45 @@ interface Props {
 }
 
 const UserTable = async ({sortOrder}: Props) => {
+  const res = await fetch("http://localhost:3000/api/users");
+  const users: Contact[] = await res.json();
 
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  const users: User[] = await res.json();
-
-  const sortedUsers = sort(users).asc(sortOrder === 'email' ? user => user.email : user => user.name);
+  const sortedUsers = sort(users).asc(
+    sortOrder === "email" ? (user) => user.userEmail : (user) => user.userName
+  );
 
   return (
-    <table className='table table-bordered'>
-    <thead>
+    <table className="table table-bordered">
+      <thead>
         <tr>
-        <th><Link href="/users?sortOrder=name">Name</Link></th>
-        <th><Link href="/users?sortOrder=email">Email</Link></th>
-      </tr>
-    </thead>
-    <tbody>
-      {sortedUsers.map(user => <tr key={user.id}>
-        <td>{ user.name }</td>
-        <td>{ user.email }</td>
-      </tr>)}
-    </tbody>
-  </table>
-  )
-}
+          <th>
+            <Link href="/users?sortOrder=name">Name</Link>
+          </th>
+          <th>Phone</th>
+          <th>
+            <Link href="/users?sortOrder=email">Email</Link>
+          </th>
+          <th>Website</th>
+          <th>Company Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedUsers.map((user) => (
+          <tr key={user.id}>
+            <td>
+              <Link href={`/users/${encodeURIComponent(user.id)}`}>
+                {user.userName}
+              </Link>
+            </td>
+            <td>{user.userPhone}</td>
+            <td>{user.userEmail}</td>
+            <td>{user.userWebsite}</td>
+            <td>{user.userCompanyName}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
 
-export default UserTable
+export default UserTable;
