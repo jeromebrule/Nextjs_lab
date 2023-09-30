@@ -78,18 +78,22 @@ const UserTable = ({sortOrder}: Props) => {
             <td>{user.userWebsite}</td>
             <td>{user.userCompanyName}</td>
             <td>
-              <button
-                className="btn btn-circle btn-sm"
-                onClick={() => handleEditContact(user.id)}
-              >
-                <RiEdit2Line color="#000" size={20} />
-              </button>
-              <button
-                className="ml-3 btn btn-circle btn-sm"
-                onClick={() => handleDeleteContact(user.id)}
-              >
-                <RiDeleteBin5Line color="#000" size={20} />
-              </button>
+              <div className="tooltip tooltip-info" data-tip="edit contact">
+                <button
+                  className="btn btn-circle btn-sm"
+                  onClick={() => handleEditContact(user.id)}
+                >
+                  <RiEdit2Line color="#000" size={20} />
+                </button>
+              </div>
+              <div className="tooltip tooltip-error" data-tip="delete contact">
+                <button
+                  className="ml-3 btn btn-circle btn-sm"
+                  onClick={() => handleDeleteContact(user.id)}
+                >
+                  <RiDeleteBin5Line color="#000" size={20} />
+                </button>
+              </div>
             </td>
           </tr>
         ))}
