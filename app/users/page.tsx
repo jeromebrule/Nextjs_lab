@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import UserTable from "./UserTable";
 import Link from "next/link";
 import Modal from "../components/Modal";
+import NewUserForm from "./new/NewUserForm";
 
 interface Props {
   searchParams: {sortOrder: string};
@@ -22,10 +23,10 @@ const UsersPage = ({searchParams: {sortOrder}}: Props) => {
       <button onClick={handleToggle}>test</button>
       <UserTable sortOrder={sortOrder} />
       <Modal show={show}>
-        this is a modal
-        <button className="btn btn-primary" onClick={handleToggle}>
-          Yay!
+        <button className="" onClick={handleToggle}>
+          x
         </button>
+        <NewUserForm />
       </Modal>
     </>
   );
