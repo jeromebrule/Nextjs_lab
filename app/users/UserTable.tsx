@@ -43,6 +43,7 @@ const UserTable = ({sortOrder}: Props) => {
   }, []);
 
   const handleDeleteContact = (id: number) => console.log(id);
+  const handleEditContact = (id: number) => console.log(id);
 
   // const sortedUsers = sort(users).asc(
   //   sortOrder === "email" ? (user) => user.userEmail : (user) => user.userName
@@ -80,7 +81,9 @@ const UserTable = ({sortOrder}: Props) => {
               <button onClick={() => handleDeleteContact(user.id)}>
                 <RiDeleteBin5Line color="#ff6b81" size={20} />
               </button>
-              <RiEdit2Line color="#ff6b81" size={20} />
+              <button onClick={() => handleEditContact(user.id)}>
+                <RiEdit2Line color="#ff6b81" size={20} />
+              </button>
             </td>
           </tr>
         ))}
