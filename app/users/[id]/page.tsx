@@ -8,6 +8,7 @@ interface Props {
 }
 
 interface Contact {
+  id: number;
   userName: string;
   userEmail: string;
   userPhone: string;
@@ -19,6 +20,7 @@ const UserDetailPage = async ({params: {id}}: Props) => {
   const res = await fetch(`http://localhost:3000/api/users/${id}`);
   const user: Contact = await res.json();
 
+  if (!user.id) notFound();
   return (
     <>
       <div className="card lg:card-side bg-base-100 shadow-xl">
