@@ -1,15 +1,8 @@
-"use client";
-import {useState} from "react";
-
 import React from "react";
 import UserTable from "./UserTable";
 import Link from "next/link";
 
-interface Props {
-  searchParams: {sortOrder: string};
-}
-
-const UsersPage = ({searchParams: {sortOrder}}: Props) => {
+const UsersPage = () => {
   return (
     <>
       <h1 className="mb-5">Contacts</h1>
@@ -17,7 +10,7 @@ const UsersPage = ({searchParams: {sortOrder}}: Props) => {
         Create contact
       </Link>
       <div className="divider"></div>
-      <UserTable sortOrder={sortOrder} />
+      <UserTable />
     </>
   );
 };
