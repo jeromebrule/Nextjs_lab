@@ -18,7 +18,7 @@ interface Contact {
 }
 
 const Edit = async ({params: {id}}: Props) => {
-  const res = await fetch(`/api/users/${id}`);
+  const res = await fetch(`http://localhost:3000/api/users/${id}`);
   const user: Contact = await res.json();
 
   if (!user.id) notFound();

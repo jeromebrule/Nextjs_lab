@@ -127,8 +127,8 @@ const NewUserForm = () => {
         )}
         {status === 400 && (
           <div className="toast toast-end">
-            <div className="alert alert-error">
-              <span>Please review the form.</span>
+            <div className="alert alert-info">
+              <span>Contact already exist.</span>
             </div>
           </div>
         )}

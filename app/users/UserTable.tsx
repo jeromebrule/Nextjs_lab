@@ -5,6 +5,7 @@ import Link from "next/link";
 import {sort} from "fast-sort";
 import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 import {useSession} from "next-auth/react";
+import Modal from "../components/Modal";
 
 interface Contact {
   id: number;
@@ -21,6 +22,7 @@ interface Props {
 const UserTable = ({sortOrder}: Props) => {
   const {data: session, status} = useSession();
 
+  const [alertVisible, setAlertVisibily] = useState(false);
   const [users, setUsers] = useState<Contact[]>([]);
   const [error, setError] = useState<any>();
   const [apistatus, setapiStatus] = useState<any>();
@@ -41,6 +43,12 @@ const UserTable = ({sortOrder}: Props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleEditContact = (id: number) => {
+    setAlertVisibily(true);
+    console.log(id);
+    const userId = id;
+  };
 
   const handleDeleteContact = (id: number) =>
     fetch(`/api/users/${id}`, {
@@ -94,12 +102,15 @@ const UserTable = ({sortOrder}: Props) => {
                       className="tooltip tooltip-info"
                       data-tip="edit contact"
                     >
-                      <Link
+                      {/* <Link
                         href={`/users/${encodeURIComponent(user.id)}/edit`}
                         className="btn btn-circle btn-sm"
                       >
                         <RiEdit2Line color="#000" size={20} />
-                      </Link>
+                      </Link> */}
+                      <button onClick={() => handleEditContact(user.id)}>
+                        edit
+                      </button>
                     </div>
                     <div
                       className="tooltip tooltip-error"
@@ -140,6 +151,11 @@ const UserTable = ({sortOrder}: Props) => {
           )}
         </tbody>
       </table>
+      {alertVisible && (
+        <Modal onClose={() => setAlertVisibily(false)}>
+          <h3>Hello World</h3>
+        </Modal>
+      )}
     </>
   );
 };
