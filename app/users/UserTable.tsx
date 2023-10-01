@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useSession} from "next-auth/react";
 import type {GetServerSideProps} from "next";
 import {useEffect, useState} from "react";
+import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 
 interface Contact {
   id: number;
@@ -15,7 +16,7 @@ interface Contact {
 }
 
 const UserTable = () => {
-  // const {data: session, status} = useSession();
+  const {data: session, status} = useSession();
 
   const [usersInfo, setUsersInfo] = useState([]);
 
@@ -58,7 +59,34 @@ const UserTable = () => {
               <td className="td-class">{user.userEmail}</td>
               <td className="td-class">{user.userWebsite}</td>
               <td className="td-class">{user.userCompanyName}</td>
-              <td className="td-class"></td>
+              <td className="td-class">
+                {status === "authenticated" && (
+                  <>
+                    <div
+                      className="tooltip tooltip-info"
+                      data-tip="edit contact"
+                    >
+                      <Link
+                        href={`/users/${encodeURIComponent(user.id)}/edit`}
+                        className="btn btn-circle btn-sm"
+                      >
+                        <RiEdit2Line color="#000" size={20} />
+                      </Link>
+                    </div>
+                    <div
+                      className="tooltip tooltip-error"
+                      data-tip="delete contact"
+                    >
+                      <button
+                        className="ml-3 btn btn-circle btn-sm"
+                        onClick={() => handleDeleteContact(user.id)}
+                      >
+                        <RiDeleteBin5Line color="#000" size={20} />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
