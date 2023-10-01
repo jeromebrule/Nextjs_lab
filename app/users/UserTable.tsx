@@ -27,7 +27,7 @@ const UserTable = ({sortOrder}: Props) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users/");
+      const response = await fetch("/api/users/");
       if (!response.ok) {
         throw new Error("Sorry something went wrong");
       }
@@ -43,7 +43,7 @@ const UserTable = ({sortOrder}: Props) => {
   }, []);
 
   const handleDeleteContact = (id: number) =>
-    fetch(`http://localhost:3000/api/users/${id}`, {
+    fetch(`/api/users/${id}`, {
       method: "DELETE",
     })
       .then(function (response) {

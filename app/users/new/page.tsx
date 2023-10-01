@@ -31,7 +31,7 @@ const NewUserForm = () => {
   let message = "";
 
   const onSubmit = (data: FieldValues) =>
-    fetch("http://localhost:3000/api/users/", {
+    fetch("/api/users/", {
       method: "POST",
       body: JSON.stringify(data),
     })

@@ -39,7 +39,7 @@ const UserForm = ({user}: Props) => {
   });
 
   const onSubmit = (data: FieldValues) =>
-    fetch(`http://localhost:3000/api/users/${user.id}`, {
+    fetch(`/api/users/${user.id}`, {
       method: "PUT",
       body: JSON.stringify(data),
     })
