@@ -5,8 +5,6 @@ import Link from "next/link";
 import {sort} from "fast-sort";
 import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 import {useSession} from "next-auth/react";
-import Modal from "../components/Modal";
-import UserForm from "../components/UserForm";
 
 interface Contact {
   id: number;
@@ -62,9 +60,9 @@ const UserTable = ({sortOrder}: Props) => {
 
   return (
     <>
-      <table className="table table-bordered">
+      <table className="table table-bordered table-auto">
         <thead>
-          <tr>
+          <tr className="hidden md:table-row">
             <th>
               <Link href="/users?sortOrder=name">Name</Link>
             </th>
@@ -79,17 +77,17 @@ const UserTable = ({sortOrder}: Props) => {
         </thead>
         <tbody>
           {sortedUsers.map((user) => (
-            <tr key={user.id}>
-              <td>
+            <tr key={user.id} className="tr-class">
+              <td className="td-class">
                 <Link href={`/users/${encodeURIComponent(user.id)}`}>
                   {user.userName}
                 </Link>
               </td>
-              <td>{user.userPhone}</td>
-              <td>{user.userEmail}</td>
-              <td>{user.userWebsite}</td>
-              <td>{user.userCompanyName}</td>
-              <td>
+              <td className="td-class">{user.userPhone}</td>
+              <td className="td-class">{user.userEmail}</td>
+              <td className="td-class">{user.userWebsite}</td>
+              <td className="td-class">{user.userCompanyName}</td>
+              <td className="td-class">
                 {status === "authenticated" && (
                   <>
                     <div
