@@ -1,18 +1,24 @@
-import React, {ReactNode} from "react";
+import {ReactNode} from "react";
+import UserForm from "./UserForm";
 
 interface Props {
   children: ReactNode;
-  show: boolean;
+  onClose: () => void;
 }
 
-const Modal = ({children, show}: Props) => {
-  const content = show && (
-    <div className="modal modal-bottom sm:modal-middle modal-open">
-      {/* we want any content for this modal layout so we just pass the children */}
-      <div className="modal-box">{children}</div>
+const Modal = ({children, onClose}: Props) => {
+  return (
+    <div className="alert alert-primary alert-dismissible" role="alert">
+      {children}
+      <button
+        type="button"
+        className="btn btn-neutral"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        onClick={onClose}
+      ></button>
     </div>
   );
-  return content;
 };
 
 export default Modal;

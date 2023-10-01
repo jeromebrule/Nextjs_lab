@@ -5,6 +5,8 @@ import Link from "next/link";
 import {sort} from "fast-sort";
 import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 import {useSession} from "next-auth/react";
+import Modal from "../components/Modal";
+import UserForm from "../components/UserForm";
 
 interface Contact {
   id: number;
@@ -59,83 +61,88 @@ const UserTable = ({sortOrder}: Props) => {
   );
 
   return (
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>
-            <Link href="/users?sortOrder=name">Name</Link>
-          </th>
-          <th>Phone</th>
-          <th>
-            <Link href="/users?sortOrder=email">Email</Link>
-          </th>
-          <th>Website</th>
-          <th>Company Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedUsers.map((user) => (
-          <tr key={user.id}>
-            <td>
-              <Link href={`/users/${encodeURIComponent(user.id)}`}>
-                {user.userName}
-              </Link>
-            </td>
-            <td>{user.userPhone}</td>
-            <td>{user.userEmail}</td>
-            <td>{user.userWebsite}</td>
-            <td>{user.userCompanyName}</td>
-            <td>
-              {status === "authenticated" && (
-                <>
-                  <div className="tooltip tooltip-info" data-tip="edit contact">
-                    <Link
-                      href={`/users/${encodeURIComponent(user.id)}/edit`}
-                      className="btn btn-circle btn-sm"
-                    >
-                      <RiEdit2Line color="#000" size={20} />
-                    </Link>
-                  </div>
-                  <div
-                    className="tooltip tooltip-error"
-                    data-tip="delete contact"
-                  >
-                    <button
-                      className="ml-3 btn btn-circle btn-sm"
-                      onClick={() => handleDeleteContact(user.id)}
-                    >
-                      <RiDeleteBin5Line color="#000" size={20} />
-                    </button>
-                  </div>
-                </>
-              )}
-            </td>
+    <>
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              <Link href="/users?sortOrder=name">Name</Link>
+            </th>
+            <th>Phone</th>
+            <th>
+              <Link href="/users?sortOrder=email">Email</Link>
+            </th>
+            <th>Website</th>
+            <th>Company Name</th>
+            <th></th>
           </tr>
-        ))}
-        {apistatus === 401 && (
-          <div className="toast toast-end">
-            <div className="alert alert-error">
-              <span>Unauthorized.</span>
+        </thead>
+        <tbody>
+          {sortedUsers.map((user) => (
+            <tr key={user.id}>
+              <td>
+                <Link href={`/users/${encodeURIComponent(user.id)}`}>
+                  {user.userName}
+                </Link>
+              </td>
+              <td>{user.userPhone}</td>
+              <td>{user.userEmail}</td>
+              <td>{user.userWebsite}</td>
+              <td>{user.userCompanyName}</td>
+              <td>
+                {status === "authenticated" && (
+                  <>
+                    <div
+                      className="tooltip tooltip-info"
+                      data-tip="edit contact"
+                    >
+                      <Link
+                        href={`/users/${encodeURIComponent(user.id)}/edit`}
+                        className="btn btn-circle btn-sm"
+                      >
+                        <RiEdit2Line color="#000" size={20} />
+                      </Link>
+                    </div>
+                    <div
+                      className="tooltip tooltip-error"
+                      data-tip="delete contact"
+                    >
+                      <button
+                        className="ml-3 btn btn-circle btn-sm"
+                        onClick={() => handleDeleteContact(user.id)}
+                      >
+                        <RiDeleteBin5Line color="#000" size={20} />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
+          {apistatus === 401 && (
+            <div className="toast toast-end">
+              <div className="alert alert-error">
+                <span>Unauthorized.</span>
+              </div>
             </div>
-          </div>
-        )}
-        {apistatus === 200 && (
-          <div className="toast toast-end">
-            <div className="alert alert-info">
-              <span>Contact Deleted.</span>
+          )}
+          {apistatus === 200 && (
+            <div className="toast toast-end">
+              <div className="alert alert-info">
+                <span>Contact Deleted.</span>
+              </div>
             </div>
-          </div>
-        )}
-        {error && (
-          <div className="toast toast-end">
-            <div className="alert alert-error">
-              <span>{error}</span>
+          )}
+          {error && (
+            <div className="toast toast-end">
+              <div className="alert alert-error">
+                <span>{error}</span>
+              </div>
             </div>
-          </div>
-        )}
-      </tbody>
-    </table>
+          )}
+        </tbody>
+      </table>
+    </>
   );
 };
 
