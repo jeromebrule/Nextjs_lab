@@ -1,3 +1,4 @@
+import UserForm from "@/app/components/UserForm";
 import {notFound} from "next/navigation";
 import React from "react";
 
@@ -24,16 +25,9 @@ const Edit = async ({params: {id}}: Props) => {
 
   return (
     <>
-      <div className="card lg:card-side bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title">{user.userName}</h2>
-          <ul>
-            <li>{user.userEmail}</li>
-            <li>{user.userPhone}</li>
-            <li>{user.userWebsite}</li>
-            <li>{user.userCompanyName}</li>
-          </ul>
-        </div>
+      <div className="card-body">
+        <h2 className="card-title">Edit {user.userName} information</h2>
+        <UserForm user={user} />
       </div>
     </>
   );

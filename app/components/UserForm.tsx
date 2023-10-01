@@ -1,16 +1,12 @@
 "use client";
 
+import {useState} from "react";
 import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {redirect} from "next/navigation";
-import {useState} from "react";
-
-interface ApiMessage {
-  status: any;
-}
 
 const schema = z.object({
+  id: z.number(),
   userName: z.string().min(3),
   userEmail: z.string().email(),
   userPhone: z.string().min(10),
@@ -18,22 +14,31 @@ const schema = z.object({
   userCompanyName: z.string(),
 });
 
+interface ApiMessage {
+  status: any;
+}
+
+interface Props {
+  user: FormData;
+}
+
 type FormData = z.infer<typeof schema>;
 
-const AddEdit = () => {
+const UserForm = ({user}: Props) => {
   const [status, setStatus] = useState<any>();
 
   const {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<FormData>({resolver: zodResolver(schema)});
-
-  let message = "";
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: user,
+  });
 
   const onSubmit = (data: FieldValues) =>
-    fetch("http://localhost:3000/api/users/", {
-      method: "POST",
+    fetch(`http://localhost:3000/api/users/${user.id}`, {
+      method: "PUT",
       body: JSON.stringify(data),
     })
       .then(function (response) {
@@ -117,12 +122,12 @@ const AddEdit = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary mt-3">
-          Submit
+          {user.id ? "Update" : "Save"}
         </button>
-        {status === 201 && (
+        {status === 200 && (
           <div className="toast toast-end">
             <div className="alert alert-success">
-              <span>Contact Created.</span>
+              <span>Contact Updated.</span>
             </div>
           </div>
         )}
@@ -138,4 +143,4 @@ const AddEdit = () => {
   );
 };
 
-export default AddEdit;
+export default UserForm;
