@@ -1,6 +1,7 @@
 "use client";
 
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -26,6 +27,7 @@ type FormData = z.infer<typeof schema>;
 
 const UserForm = ({user}: Props) => {
   const [status, setStatus] = useState<any>();
+  const router = useRouter();
 
   const {
     register,
@@ -43,6 +45,7 @@ const UserForm = ({user}: Props) => {
     })
       .then(function (response) {
         setStatus(response.status);
+        router.push("/users");
         return response.json();
       })
       .catch(function (error) {
