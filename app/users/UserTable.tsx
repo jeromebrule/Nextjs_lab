@@ -14,11 +14,6 @@ interface Contact {
   userWebsite: string;
   userCompanyName: string;
 }
-
-interface ApiError {
-  error: any;
-}
-
 interface Props {
   sortOrder: string;
 }
@@ -52,14 +47,12 @@ const UserTable = ({sortOrder}: Props) => {
       method: "DELETE",
     })
       .then(function (response) {
-        setapiStatus(response.status);
         fetchData();
+        setapiStatus(response.status);
       })
       .catch(function (error) {
         console.log(error);
       });
-
-  const handleEditContact = (id: number) => console.log(id);
 
   const sortedUsers = sort(users).asc(
     sortOrder === "email" ? (user) => user.userEmail : (user) => user.userName
@@ -82,7 +75,7 @@ const UserTable = ({sortOrder}: Props) => {
         </tr>
       </thead>
       <tbody>
-        {sortedUsers.map((user, index) => (
+        {sortedUsers.map((user) => (
           <tr key={user.id}>
             <td>
               <Link href={`/users/${encodeURIComponent(user.id)}`}>
@@ -97,12 +90,12 @@ const UserTable = ({sortOrder}: Props) => {
               {status === "authenticated" && (
                 <>
                   <div className="tooltip tooltip-info" data-tip="edit contact">
-                    <button
+                    <Link
+                      href={`/users/${encodeURIComponent(user.id)}/edit`}
                       className="btn btn-circle btn-sm"
-                      onClick={() => handleEditContact(user.id)}
                     >
                       <RiEdit2Line color="#000" size={20} />
-                    </button>
+                    </Link>
                   </div>
                   <div
                     className="tooltip tooltip-error"
