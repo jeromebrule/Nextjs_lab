@@ -1,19 +1,46 @@
 
 version: '3.8'
+
+networks:
+  default:
+
 services:
   db:
     image: mysql:8.0
+    container_name: mysql
+    ports:
+      - '3306:3306'
     cap_add:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=govttest
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - '3306:3306'
+      - MYSQL_DATABASE=govttest
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - default
+
+
+  nextjs-app:
+    container_name: govt-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - $NEXTJS_APP_LOCAL_PORT:$NEXTJS_APP_DOCKER_PORT
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./nextjs-app:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - default
 volumes:
   db:
     driver: local
