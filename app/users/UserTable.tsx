@@ -73,17 +73,6 @@ const UserTable = () => {
                         <RiEdit2Line color="#000" size={20} />
                       </Link>
                     </div>
-                    <div
-                      className="tooltip tooltip-error"
-                      data-tip="delete contact"
-                    >
-                      <button
-                        className="ml-3 btn btn-circle btn-sm"
-                        onClick={() => handleDeleteContact(user.id)}
-                      >
-                        <RiDeleteBin5Line color="#000" size={20} />
-                      </button>
-                    </div>
                   </>
                 )}
               </td>
