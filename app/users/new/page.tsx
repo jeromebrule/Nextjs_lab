@@ -4,6 +4,7 @@ import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 
 interface ApiMessage {
   status: any;
@@ -22,6 +23,8 @@ type FormData = z.infer<typeof schema>;
 const NewUserForm = () => {
   const [status, setStatus] = useState<any>();
 
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -37,6 +40,8 @@ const NewUserForm = () => {
     })
       .then(function (response) {
         setStatus(response.status);
+        router.refresh();
+        router.push("/");
         return response.json();
       })
       .catch(function (error) {
