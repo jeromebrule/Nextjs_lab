@@ -1,23 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import Contact from "@/lib/types";
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
 import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
 
-const UserTable = () => {
+interface Props {
+  usersInfo: string[];
+}
+
+const UserTable = ({usersInfo}: Props) => {
   const {data: session, status} = useSession();
-
-  const [usersInfo, setUsersInfo] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      const query = await fetch("http://localhost:3000/api/users/");
-      const response = await query.json();
-      setUsersInfo(response);
-    };
-    getData();
-  }, []);
 
   return (
     <>
