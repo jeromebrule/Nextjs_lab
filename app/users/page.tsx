@@ -21,7 +21,6 @@ const UsersPage = () => {
 
   const handleSearch = (e: any) => {
     const query = e.target.value;
-    console.log(query);
     fetch("/api/users/search", {
       method: "POST",
       body: JSON.stringify({userName: query}),
