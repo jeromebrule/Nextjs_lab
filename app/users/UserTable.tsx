@@ -2,18 +2,8 @@
 
 import Link from "next/link";
 import {useSession} from "next-auth/react";
-import type {GetServerSideProps} from "next";
 import {useEffect, useState} from "react";
 import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
-
-interface Contact {
-  id: number;
-  userName: string;
-  userEmail: string;
-  userPhone: string;
-  userWebsite: string;
-  userCompanyName: string;
-}
 
 const UserTable = () => {
   const {data: session, status} = useSession();
@@ -35,13 +25,9 @@ const UserTable = () => {
       <table className="table table-bordered table-auto">
         <thead>
           <tr className="hidden md:table-row">
-            <th>
-              <Link href="/users?sortOrder=name">Name</Link>
-            </th>
+            <th>Name</th>
             <th>Phone</th>
-            <th>
-              <Link href="/users?sortOrder=email">Email</Link>
-            </th>
+            <th>Email</th>
             <th>Website</th>
             <th>Company Name</th>
             <th></th>

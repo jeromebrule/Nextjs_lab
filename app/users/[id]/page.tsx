@@ -1,4 +1,8 @@
+"use client";
+
+import {useEffect, useState} from "react";
 import {notFound} from "next/navigation";
+import {Contact} from "../../../lib/types";
 import React from "react";
 
 interface Props {
@@ -7,31 +11,30 @@ interface Props {
   };
 }
 
-interface Contact {
-  id: number;
-  userName: string;
-  userEmail: string;
-  userPhone: string;
-  userWebsite: string;
-  userCompanyName: string;
-}
+const UserDetailPage = ({params: {id}}: Props) => {
+  const [userInfo, setUserInfo] = useState<Contact>([]);
 
-const UserDetailPage = async ({params: {id}}: Props) => {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`);
-  const user: Contact = await res.json();
+  useEffect(() => {
+    const getData = async () => {
+      const query = await fetch(`http://localhost:3000/api/users/${id}`);
+      const response = await query.json();
+      setUserInfo(response);
+    };
+    getData();
+  }, []);
 
-  if (!user.id) notFound();
+  if (!userInfo) notFound();
 
   return (
     <>
       <div className="card lg:card-side bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{user.userName}</h2>
+          <h2 className="card-title">{userInfo.userName}</h2>
           <ul>
-            <li>{user.userEmail}</li>
-            <li>{user.userPhone}</li>
-            <li>{user.userWebsite}</li>
-            <li>{user.userCompanyName}</li>
+            <li>{userInfo.userEmail}</li>
+            <li>{userInfo.userPhone}</li>
+            <li>{userInfo.userWebsite}</li>
+            <li>{userInfo.userCompanyName}</li>
           </ul>
         </div>
       </div>

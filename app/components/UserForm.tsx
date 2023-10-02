@@ -20,7 +20,7 @@ interface ApiMessage {
 }
 
 interface Props {
-  user?: FormData;
+  user: FormData;
 }
 
 type FormData = z.infer<typeof schema>;
