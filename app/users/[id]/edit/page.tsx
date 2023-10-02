@@ -10,7 +10,9 @@ interface Props {
 }
 
 const Edit = async ({params: {id}}: Props) => {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`);
+  const baseUrl = process.env.BASE_URL;
+
+  const res = await fetch(`${baseUrl}/api/users/${id}`);
   const userInfo: Contact = await res.json();
 
   if (!userInfo.id) notFound();

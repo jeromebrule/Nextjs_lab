@@ -16,7 +16,7 @@ const UserDetailPage = ({params: {id}}: Props) => {
 
   useEffect(() => {
     const getData = async () => {
-      const query = await fetch(`http://localhost:3000/api/users/${id}`);
+      const query = await fetch(`/api/users/${id}`);
       const response = await query.json();
       setUserInfo(response);
     };

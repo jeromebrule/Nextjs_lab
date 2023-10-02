@@ -1,18 +1,15 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import Contact from "@/lib/types";
 import UserTable from "./UserTable";
 import Link from "next/link";
-import Search from "../components/Search";
-import {seteuid} from "process";
 
 const UsersPage = () => {
   const [usersInfo, setUsersInfo] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const query = await fetch("http://localhost:3000/api/users/");
+      const query = await fetch("/api/users/");
       const response = await query.json();
       setUsersInfo(response);
     };
