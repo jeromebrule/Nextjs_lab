@@ -51,7 +51,7 @@ const UsersPage = () => {
                 className="input input-bordered w-full"
                 onChange={handleSearch}
               />
-              <button className="btn join-item">search</button>
+              {/* <button className="btn join-item">search</button> */}
             </div>
           </form>
         </div>

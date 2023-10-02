@@ -20,12 +20,12 @@ interface ApiMessage {
 }
 
 interface Props {
-  user: FormData;
+  userInfo: FormData;
 }
 
 type FormData = z.infer<typeof schema>;
 
-const UserForm = ({user}: Props) => {
+const UserForm = ({userInfo}: Props) => {
   const [status, setStatus] = useState<any>();
   const router = useRouter();
 
@@ -35,11 +35,11 @@ const UserForm = ({user}: Props) => {
     formState: {errors},
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: user,
+    defaultValues: userInfo,
   });
 
   const onSubmit = (data: FieldValues) =>
-    fetch(`/api/users/${user.id}`, {
+    fetch(`/api/users/${userInfo.id}`, {
       method: "PUT",
       body: JSON.stringify(data),
     })
@@ -128,7 +128,7 @@ const UserForm = ({user}: Props) => {
           />
         </div>
         <button type="submit" className="btn btn-primary mt-3">
-          {user.id ? "Update" : "Save"}
+          {userInfo.id ? "Update" : "Save"}
         </button>
         {status === 200 && (
           <div className="toast toast-end">

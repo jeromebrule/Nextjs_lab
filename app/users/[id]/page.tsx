@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 import {notFound} from "next/navigation";
-import {Contact} from "../../../lib/types";
+import Contact from "@/lib/types";
 import React from "react";
 
 interface Props {
