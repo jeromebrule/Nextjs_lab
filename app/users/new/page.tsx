@@ -3,12 +3,7 @@
 import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {useState} from "react";
 import {useRouter} from "next/navigation";
-
-interface ApiMessage {
-  status: any;
-}
 
 const schema = z.object({
   userName: z.string().min(3),
@@ -21,8 +16,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const NewUserForm = () => {
-  const [status, setStatus] = useState<any>();
-
   const router = useRouter();
 
   const {
@@ -31,17 +24,14 @@ const NewUserForm = () => {
     formState: {errors},
   } = useForm<FormData>({resolver: zodResolver(schema)});
 
-  let message = "";
-
   const onSubmit = (data: FieldValues) =>
     fetch("/api/users/", {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then(function (response) {
-        setStatus(response.status);
         router.refresh();
-        router.push("/");
+        router.push("/users");
         return response.json();
       })
       .catch(function (error) {
