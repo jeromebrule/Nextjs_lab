@@ -1,7 +1,8 @@
+"use client";
+
 import UserForm from "@/app/components/UserForm";
 import {notFound} from "next/navigation";
 import Contact from "@/lib/types";
-import React from "react";
 
 interface Props {
   params: {
@@ -10,9 +11,7 @@ interface Props {
 }
 
 const Edit = async ({params: {id}}: Props) => {
-  const baseUrl = process.env.BASE_URL;
-
-  const res = await fetch(`${baseUrl}/api/users/${id}`);
+  const res = await fetch(`http://localhost:3000/api/users/${id}`);
   const userInfo: Contact = await res.json();
 
   if (!userInfo.id) notFound();

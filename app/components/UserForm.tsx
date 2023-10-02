@@ -15,10 +15,6 @@ const schema = z.object({
   userCompanyName: z.string(),
 });
 
-interface ApiMessage {
-  status: any;
-}
-
 interface Props {
   userInfo: FormData;
 }
@@ -46,10 +42,8 @@ const UserForm = ({userInfo}: Props) => {
       .then(function (response) {
         setStatus(response.status);
         if (response.ok) {
-          router.refresh();
-          router.push("/users");
+          return response.json();
         }
-        return response.json();
       })
       .catch(function (error) {
         console.log(error);

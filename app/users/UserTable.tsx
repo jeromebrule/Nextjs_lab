@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Contact from "@/lib/types";
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
-import {RiDeleteBin5Line, RiEdit2Line} from "react-icons/ri";
+import {RiEdit2Line} from "react-icons/ri";
 
 interface Props {
   usersInfo: string[];
