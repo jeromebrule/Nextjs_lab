@@ -45,7 +45,10 @@ const UserForm = ({user}: Props) => {
     })
       .then(function (response) {
         setStatus(response.status);
-        router.push("/users");
+        if (response.ok) {
+          router.refresh();
+          router.push("/users");
+        }
         return response.json();
       })
       .catch(function (error) {
@@ -137,7 +140,14 @@ const UserForm = ({user}: Props) => {
         {status === 400 && (
           <div className="toast toast-end">
             <div className="alert alert-error">
-              <span>Please review the form.</span>
+              <span>Contact already exist.</span>
+            </div>
+          </div>
+        )}
+        {status === 500 && (
+          <div className="toast toast-end">
+            <div className="alert alert-error">
+              <span>Contact already exist.</span>
             </div>
           </div>
         )}
