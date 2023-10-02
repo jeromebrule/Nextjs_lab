@@ -21,7 +21,6 @@ const UserTable = () => {
 
   return (
     <>
-      <h1>Hello World</h1>
       <table className="table table-bordered table-auto">
         <thead>
           <tr className="hidden md:table-row">

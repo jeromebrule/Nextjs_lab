@@ -40,25 +40,6 @@ const NavBar = () => {
         </ul>
       </div>
     </div>
-
-    // <div className="flex bg-slate-200 p-2 space-x-3">
-    //   <Link href="/">A Very Real Company</Link>
-    //   <Link href="/users">Users</Link>
-    //   {status === "loading" && (
-    //     <span className="loading loading-dots loading-sm"></span>
-    //   )}
-    //   {status === "authenticated" && (
-    //     <div>
-    //       {session.user!.name}
-    //       <Link href="/api/auth/signout" className="ml-3">
-    //         Sign out
-    //       </Link>
-    //     </div>
-    //   )}
-    //   {status === "unauthenticated" && (
-    //     <Link href="/api/auth/signin">Login</Link>
-    //   )}
-    // </div>
   );
 };
 
