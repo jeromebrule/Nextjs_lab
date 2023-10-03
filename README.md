@@ -36,6 +36,11 @@ http://localhost:3000/api/register
     "password": "mypassword!"
 }
 
+OR
+
+you can use curl command
+curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'
+
 ```
 
 ```

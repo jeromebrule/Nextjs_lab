@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "start:dev": "next dev --watch",
+    "setadmin": "curl http://localhost:3000/api/register -d '{\"name\": \"Test User\", \"email\":\"test@test.com\", \"password\": \"password123\"}'",
+    "migrate:dev": "prisma migrate dev && prisma db seed && npm run dev"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

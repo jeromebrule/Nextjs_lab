@@ -23,8 +23,6 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - default
-
-
   nextjs-app:
     container_name: govt-app
     build:
@@ -42,7 +40,8 @@ services:
       - /app/.next
     networks:
       - default
-    depends_on: db
+    depends_on:
+      - db
 volumes:
   db:
     driver: local

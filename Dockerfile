@@ -4,10 +4,10 @@ WORKDIR /opt
 COPY . .
 RUN npm install
 
-RUN npx prisma migrate dev --name init
-RUN npx prisma db seed
+RUN apk --no-cache add curl
+RUN npx prisma generate dev
 RUN npm uninstall bcrypt
 RUN npm install bcrypt
 
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "migrate:dev"]
