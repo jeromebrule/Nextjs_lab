@@ -12,10 +12,11 @@ const config = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
  
   testEnvironment: "jsdom",
-  "automock": false,
-  "moduleNameMapper": {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-  },
+    "automock": false,
+    "moduleNameMapper": {
+      "^jose": "jose",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+      },
   transformIgnorePatterns: [
     // The regex below is just a guess, you might tweak it
     "!node_modules/"
