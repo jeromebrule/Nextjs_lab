@@ -3,6 +3,22 @@
 First, run the development server:
 
 ```
+### Create .env file
+
+DATABASE_URL=
+
+BASE_URL=
+
+NEXTJS_APP_LOCAL_PORT=
+NEXTJS_APP_DOCKER_PORT=
+
+NEXTAUTH_URL=
+NEXTAUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+```
 docker compose up
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
