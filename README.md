@@ -54,7 +54,7 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
 
 ```
   GET ALL - http://localhost:3000/api/users
-  GET ONE - http://localhost:3000/api/users/$[id] - AUTH only
+  GET ONE - http://localhost:3000/api/users/$[id]
   POST - http://localhost:3000/api/users
   PUT - http://localhost:3000/api/users/$[id] - AUTH only
   DELETE - http://localhost:3000/api/users/$[id] - AUTH only
