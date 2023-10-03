@@ -20,27 +20,30 @@ GOOGLE_CLIENT_SECRET=
 
 ```
 docker compose up
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
-```
-
-```
 Register new admin user from postman.
-http://localhost:3000/api/register
 
+```
+http://localhost:3000/api/register
+```
+
+```
 {
     "name": "testuser",
     "email": "test@test.com",
     "password": "mypassword!"
 }
+```
 
 OR
 
 you can use curl command
-curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'
 
+```
+curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'
 ```
 
 ```
