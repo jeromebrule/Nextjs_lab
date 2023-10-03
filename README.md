@@ -50,6 +50,16 @@ you can use curl command inside next-app container
 curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'
 ```
 
+### Endpoint
+
+```
+  GET ALL - http://localhost:3000/api/users
+  GET ONE - http://localhost:3000/api/users/$[id] - AUTH only
+  POST - http://localhost:3000/api/users
+  PUT - http://localhost:3000/api/users/$[id] - AUTH only
+  DELETE - http://localhost:3000/api/users/$[id] - AUTH only
+```
+
 ```
 ### Frontend
 - As an unauthenticated user I see a welcome page page.
@@ -109,4 +119,15 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
       - Valid URL for the website
     - I will get an error message if the user already exist.
       - {error: "User already exist"}, {status: 400}
+```
+
+### Deployment
+
+```
+There's also a github action build the docker image.
+https://github.com/jeromebrule/realcompany/actions/workflows/docker-image.yml
+
+The code is deployed to Vercel.
+Logs can be found here. It obviously fails cause I dont have any domain setup.
+https://github.com/jeromebrule/realcompany/deployments
 ```
