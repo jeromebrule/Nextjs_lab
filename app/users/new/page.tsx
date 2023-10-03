@@ -21,6 +21,7 @@ const NewUserForm = () => {
   const [status, setStatus] = useState<any>();
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: {errors},
@@ -33,8 +34,8 @@ const NewUserForm = () => {
     })
       .then(function (response) {
         if (response.ok) {
-          router.refresh();
-          router.push("/users");
+          reset();
+          // router.push("/users");
         }
         setStatus(response.status);
         return response.json();
