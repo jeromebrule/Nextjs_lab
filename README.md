@@ -126,7 +126,7 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
 ### Testing
 
 ```
-I had issues during the config of JEST.
+I had issues during the config of JEST. I did wrote two simple test. One for Frontend and one for the API.
 ```
 
 ### Deployment
