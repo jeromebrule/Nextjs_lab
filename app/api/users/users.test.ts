@@ -11,7 +11,7 @@ describe('GET function', () => {
       { id: 1, userName: 'User1' },
       { id: 2, userName: 'User2' },
     ];
-    prisma.contact.findMany.mockResolvedValue(mockedData);
+    prisma.contact.findMany.mockResolvedValue(mockUsers);
 
     const { req, res } = createMocks({
       method: 'GET',
