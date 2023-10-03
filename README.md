@@ -23,7 +23,7 @@ http://localhost:3000/api/register
 ```
 
 ```
-##Frontend
+### Frontend
 - As a unauthentificated user I see a welcome page page.
 
   - I have access to a navigation to access to user listing
@@ -50,7 +50,7 @@ http://localhost:3000/api/register
 ```
 
 ```
-##Backend
+### Backend
 - As a unauthentificated
   - Contact creation
     - Backend validation
