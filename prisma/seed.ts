@@ -3,70 +3,70 @@ const prisma = new PrismaClient()
 
 const DEFAULT_CONTACT = [
   {
-    "userName": "Test User 1",
+    "userName": "Bobby User 1",
     "userEmail": "testuser1@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 2",
+    "userName": "Angela User 2",
     "userEmail": "testuser2@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 3",
+    "userName": "Jerome User 3",
     "userEmail": "testuser3@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 4",
+    "userName": "Steeve User 4",
     "userEmail": "testuser4@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 5",
+    "userName": "Benjamin User 5",
     "userEmail": "testuser5@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 6",
+    "userName": "Samuel User 6",
     "userEmail": "testuser6@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 7",
+    "userName": "Martin User 7",
     "userEmail": "testuser7@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 8",
+    "userName": "Lori User 8",
     "userEmail": "testuser8@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 9",
+    "userName": "Patricia User 9",
     "userEmail": "testuser9@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
     "userCompanyName": "Test Company"
   },
   {
-    "userName": "Test User 10",
+    "userName": "Simon User 10",
     "userEmail": "testuser10@gmail.com",
     "userPhone": "1231231234",
     "userWebsite": "http://testuser.com",
