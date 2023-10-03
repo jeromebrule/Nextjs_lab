@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {useSession} from "next-auth/react";
-import {RiEdit2Line} from "react-icons/ri";
+import {RiEdit2Line, RiUser3Line} from "react-icons/ri";
 import React from "react";
 
 interface Props {
@@ -16,7 +16,7 @@ const UserTable = ({usersInfo}: Props) => {
     <>
       <table className="table table-bordered table-auto">
         <thead>
-          <tr className="hidden md:table-row">
+          <tr className="hidden sm:table-row">
             <th>Name</th>
             <th>Phone</th>
             <th>Email</th>
@@ -38,6 +38,17 @@ const UserTable = ({usersInfo}: Props) => {
               <td className="td-class">{user.userWebsite}</td>
               <td className="td-class">{user.userCompanyName}</td>
               <td className="td-class">
+                <div
+                  className="tooltip tooltip-info"
+                  data-tip="contact details"
+                >
+                  <Link
+                    href={`/users/${encodeURIComponent(user.id)}`}
+                    className="btn btn-circle btn-sm mr-3"
+                  >
+                    <RiUser3Line color="#000" size={20} />
+                  </Link>
+                </div>
                 {status === "authenticated" && (
                   <>
                     <div
