@@ -40,7 +40,7 @@ http://localhost:3000/api/register
 
 ```
 ### Frontend
-- As a unauthentificated user I see a welcome page page.
+- As an unauthentificated user I see a welcome page page.
 
   - I have access to a navigation to access to user listing
     - I have access to a search input to look for a specific contact name.
@@ -53,7 +53,7 @@ http://localhost:3000/api/register
     - From the listing page I have options to see contact detail by clicking their name.
     - I have access to login.
 
-- As a authentificated user I see a welcome page page with my user name.
+- As an authentificated user I see a welcome page page with my user name.
 
   - I have access to a navigation to access to user listing
     - I have access to a search input to look for a specific contact name.
