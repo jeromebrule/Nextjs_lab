@@ -1,16 +1,40 @@
 import React, {ReactNode} from "react";
 
 interface Props {
-  children: ReactNode;
+  status: any;
 }
 
-const Toast = ({children}: Props) => {
+const Toast = ({status}: Props) => {
   return (
-    <div className="toast toast-start">
-      <div className="alert alert-success">
-        <span>{children}</span>
-      </div>
-    </div>
+    <>
+      {status && (
+        <div className="toast toast-end">
+          <div className="alert alert-success">
+            {status === 200 && (
+              <div className="toast toast-end">
+                <div className="alert alert-success">
+                  <span>Contact Updated.</span>
+                </div>
+              </div>
+            )}
+            {status === 400 && (
+              <div className="toast toast-end">
+                <div className="alert alert-error">
+                  <span>Contact already exist.</span>
+                </div>
+              </div>
+            )}
+            {status === 500 && (
+              <div className="toast toast-end">
+                <div className="alert alert-error">
+                  <span>Contact already exist.</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

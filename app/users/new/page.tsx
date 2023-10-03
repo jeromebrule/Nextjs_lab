@@ -1,5 +1,6 @@
 "use client";
 
+import React, {useState} from "react";
 import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -17,6 +18,7 @@ type FormData = z.infer<typeof schema>;
 
 const NewUserForm = () => {
   const router = useRouter();
+  const [status, setStatus] = useState<any>();
 
   const {
     register,
@@ -30,8 +32,11 @@ const NewUserForm = () => {
       body: JSON.stringify(data),
     })
       .then(function (response) {
-        router.refresh();
-        router.push("/users");
+        if (response.ok) {
+          router.refresh();
+          router.push("/users");
+        }
+        setStatus(response.status);
         return response.json();
       })
       .catch(function (error) {
@@ -122,7 +127,7 @@ const NewUserForm = () => {
         )}
         {status === 400 && (
           <div className="toast toast-end">
-            <div className="alert alert-info">
+            <div className="alert alert-error">
               <span>Contact already exist.</span>
             </div>
           </div>

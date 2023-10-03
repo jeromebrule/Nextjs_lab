@@ -1,8 +1,7 @@
 "use client";
-
+import {FieldValues, useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import {FieldValues, useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
@@ -16,7 +15,7 @@ const schema = z.object({
 });
 
 interface Props {
-  userInfo: FormData;
+  userInfo?: FormData;
 }
 
 type FormData = z.infer<typeof schema>;
@@ -34,20 +33,22 @@ const UserForm = ({userInfo}: Props) => {
     defaultValues: userInfo,
   });
 
-  const onSubmit = (data: FieldValues) =>
-    fetch(`/api/users/${userInfo.id}`, {
-      method: "PUT",
+  const onSubmit = (data: FieldValues) => {
+    const url = userInfo ? `/api/users/${userInfo?.id}` : "/api/users/";
+    const method = userInfo ? "PUT" : "POST";
+
+    fetch(url, {
+      method,
       body: JSON.stringify(data),
     })
       .then(function (response) {
         setStatus(response.status);
-        if (response.ok) {
-          return response.json();
-        }
+        return response.json();
       })
       .catch(function (error) {
         console.log(error);
       });
+  };
 
   return (
     <>
@@ -122,7 +123,7 @@ const UserForm = ({userInfo}: Props) => {
           />
         </div>
         <button type="submit" className="btn btn-primary mt-3">
-          {userInfo.id ? "Update" : "Save"}
+          {userInfo ? "Update" : "Save"}
         </button>
         {status === 200 && (
           <div className="toast toast-end">
