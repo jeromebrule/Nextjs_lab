@@ -60,8 +60,9 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
   DELETE - http://localhost:3000/api/users/$[id] - AUTH only
 ```
 
-```
 ### Frontend
+
+```
 - As an unauthenticated user I see a welcome page page.
 
   - I have access to a navigation to access to user listing
@@ -87,8 +88,9 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
 
 ```
 
-```
 ### Backend
+
+```
 - As a unauthentificated
   - Contact creation
     - Backend validation
