@@ -44,7 +44,7 @@ http://localhost:3000/api/register
 
 OR
 
-you can use curl command inside next-app container
+you can use curl command inside govt-app container
 
 ```
 curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'
