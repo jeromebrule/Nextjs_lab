@@ -2,20 +2,18 @@
 
 First, run the development server:
 
-```
 ### Create .env file
 
-DATABASE_URL=
+```
+DATABASE_URL="mysql://root:root@mysql:3306/realcompany?connect_timeout=300"
 
-BASE_URL=
+BASE_URL=http://localhost:3000
 
-NEXTJS_APP_LOCAL_PORT=
-NEXTJS_APP_DOCKER_PORT=
+NEXTJS_APP_LOCAL_PORT=3000
+NEXTJS_APP_DOCKER_PORT=3000
 
-NEXTAUTH_URL=
-NEXTAUTH_SECRET=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=zv1I7cipxhvWLLD1MZwOzcd5tygAxIqKK8IR133WcigZg
 ```
 
 ```
@@ -32,7 +30,7 @@ http://localhost:3000/api/register
 
 ```
 {
-    "name": "testuser",
+    "name": "Test User",
     "email": "test@test.com",
     "password": "mypassword!"
 }
@@ -40,7 +38,7 @@ http://localhost:3000/api/register
 
 OR
 
-you can use curl command
+you can use curl command inside next-app container
 
 ```
 curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@test.com", "password": "password123"}'

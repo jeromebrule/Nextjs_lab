@@ -14,15 +14,15 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=govttest
+      - MYSQL_DATABASE=realcompany
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - default
+
+
   nextjs-app:
     container_name: govt-app
     build:
