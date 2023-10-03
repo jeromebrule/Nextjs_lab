@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {useSession} from "next-auth/react";
 import {RiEdit2Line} from "react-icons/ri";
+import React from "react";
 
 interface Props {
   usersInfo: string[];
