@@ -21,6 +21,10 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - default
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$root --password=$$root
+      timeout: 10s
+      retries: 10
 
 
   nextjs-app:
@@ -41,7 +45,8 @@ services:
     networks:
       - default
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 volumes:
   db:
     driver: local
