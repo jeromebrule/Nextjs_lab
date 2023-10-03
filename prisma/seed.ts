@@ -85,7 +85,7 @@ const seedContact = async () => {
 
   Promise.all(DEFAULT_CONTACT.map(n => prisma.contact.create({
     data: {
-      userName: n.userEmail,
+      userName: n.userName,
       userEmail: n.userEmail,
       userPhone: n.userPhone,
       userWebsite: n.userWebsite,
