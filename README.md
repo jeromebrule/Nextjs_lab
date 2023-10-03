@@ -2,7 +2,7 @@
 
 First, run the development server:
 
-```bash
+```
 docker compose up
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -11,7 +11,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```
 
 ```
-Register new admin user.
+Register new admin user from postman.
 http://localhost:3000/api/register
 
 {
@@ -22,7 +22,8 @@ http://localhost:3000/api/register
 
 ```
 
-```Frontend
+```
+##Frontend
 - As a unauthentificated user I see a welcome page page.
 
   - I have access to a navigation to access to user listing
@@ -48,7 +49,8 @@ http://localhost:3000/api/register
 
 ```
 
-```Backend
+```
+##Backend
 - As a unauthentificated
   - Contact creation
     - Backend validation
@@ -62,4 +64,21 @@ http://localhost:3000/api/register
   - I will get a error message if trying to edit a contact.
     - {error: "Not authentificated"}, {status: 401}
 
+- As a authentificated
+  - Contact creation
+    - Backend validation
+      - At least 3 characters for the name
+      - Valid email
+      - 10 characters for the phone number
+      - Valid URL for the website
+    - I will get an error message if the user already exist.
+      -{error: "User already exist"}, {status: 400}
+  - Contact edit
+    - Backend validation
+      - At least 3 characters for the name
+      - Valid email
+      - 10 characters for the phone number
+      - Valid URL for the website
+    - I will get an error message if the user already exist.
+      - {error: "User already exist"}, {status: 400}
 ```
