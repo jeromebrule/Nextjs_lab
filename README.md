@@ -121,9 +121,22 @@ curl http://localhost:3000/api/register -d '{"name": "Test User", "email":"test@
       - {error: "User already exist"}, {status: 400}
 ```
 
+### Testing
+
+```
+I had issues during the config of JEST.
+```
+
 ### Deployment
 
 ```
+I would install linux on a VM
+ - Install docker
+ - Run my app with nginx
+ - Deploy my files using Github action.
+ - Build my Docker on the VM
+ - Run Docker
+
 There's also a github action build the docker image.
 https://github.com/jeromebrule/realcompany/actions/workflows/docker-image.yml
 
