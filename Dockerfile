@@ -4,7 +4,8 @@ WORKDIR /opt
 COPY . .
 RUN npm install
 
-RUN npx prisma generate dev
+RUN npx prisma migrate dev --name init
+RUN npx prisma db seed
 RUN npm uninstall bcrypt
 RUN npm install bcrypt
 
