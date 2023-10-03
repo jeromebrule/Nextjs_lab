@@ -14,16 +14,16 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=realcompany
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - default
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u $$root --password=$$root
-      timeout: 10s
+      test: mysqladmin ping -h 127.0.0.1 -u $${MYSQL_ROOT_USER} --password=$${MYSQL_ROOT_PASSWORD}
+      timeout: 20s
       retries: 10
 
 
@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - $NEXTJS_APP_LOCAL_PORT:$NEXTJS_APP_DOCKER_PORT
+      - ${NEXTJS_APP_LOCAL_PORT}:${NEXTJS_APP_DOCKER_PORT}
     stdin_open: true
     tty: true
     volumes:
