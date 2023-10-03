@@ -32,7 +32,7 @@ http://localhost:3000/api/register
 {
     "name": "Test User",
     "email": "test@test.com",
-    "password": "mypassword!"
+    "password": "password123"
 }
 ```
 
