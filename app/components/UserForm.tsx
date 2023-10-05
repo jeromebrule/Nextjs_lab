@@ -25,6 +25,7 @@ const UserForm = ({userInfo}: Props) => {
   const router = useRouter();
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: {errors},
@@ -43,6 +44,9 @@ const UserForm = ({userInfo}: Props) => {
     })
       .then(function (response) {
         setStatus(response.status);
+        if (response.status === 201) {
+          reset();
+        }
         return response.json();
       })
       .catch(function (error) {
