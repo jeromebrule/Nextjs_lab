@@ -18,10 +18,8 @@ const Edit = async ({params: {id}}: Props) => {
 
   return (
     <>
-      <div className="card-body">
-        <h2 className="card-title">Edit {userInfo.userName} information</h2>
-        <UserForm userInfo={userInfo} />
-      </div>
+      <h2 className="card-title">Edit {userInfo.userName} information</h2>
+      <UserForm userInfo={userInfo} />
     </>
   );
 };

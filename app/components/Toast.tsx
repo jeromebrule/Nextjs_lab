@@ -1,10 +1,10 @@
 import React, {ReactNode} from "react";
 
 interface Props {
-  status: any;
+  status: number;
 }
 
-const statusMessage: string = ({status}: Props) => {
+const statusMessage = ({status}: Props) => {
   if (status === 200) "Contact Updated.";
   if (status === 201) "Contact Created.";
   if (status === 400) "Contact already exist.";
