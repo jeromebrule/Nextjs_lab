@@ -6,7 +6,7 @@ import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   userName: z.string().min(3),
   userEmail: z.string().email(),
   userPhone: z.string().min(10),
@@ -129,6 +129,13 @@ const UserForm = ({userInfo}: Props) => {
           <div className="toast toast-end">
             <div className="alert alert-success">
               <span>Contact Updated.</span>
+            </div>
+          </div>
+        )}
+        {status === 201 && (
+          <div className="toast toast-end">
+            <div className="alert alert-success">
+              <span>Contact created.</span>
             </div>
           </div>
         )}
