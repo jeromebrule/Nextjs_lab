@@ -1,5 +1,5 @@
 import nextJest from 'next/jest.js'
-
+ 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: './',
@@ -11,15 +11,9 @@ const config = {
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
  
-  testEnvironment: "jsdom",
-    "automock": false,
-    "moduleNameMapper": {
-      "^jose": "jose",
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-      },
-  transformIgnorePatterns: [
-    // The regex below is just a guess, you might tweak it
-    "!node_modules/"
+  testEnvironment: 'jest-environment-jsdom',
+  "transformIgnorePatterns": [
+    "/node_modules/(?!jose)"
   ]
 }
  
