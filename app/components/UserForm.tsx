@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import Toast from "./Toast";
 
 const schema = z.object({
   id: z.number().optional(),
@@ -129,34 +130,7 @@ const UserForm = ({userInfo}: Props) => {
         <button type="submit" className="btn btn-primary mt-3">
           {userInfo ? "Update" : "Save"}
         </button>
-        {status === 200 && (
-          <div className="toast toast-end">
-            <div className="alert alert-success">
-              <span>Contact Updated.</span>
-            </div>
-          </div>
-        )}
-        {status === 201 && (
-          <div className="toast toast-end">
-            <div className="alert alert-success">
-              <span>Contact created.</span>
-            </div>
-          </div>
-        )}
-        {status === 400 && (
-          <div className="toast toast-end">
-            <div className="alert alert-error">
-              <span>Contact already exist.</span>
-            </div>
-          </div>
-        )}
-        {status === 500 && (
-          <div className="toast toast-end">
-            <div className="alert alert-error">
-              <span>Contact already exist.</span>
-            </div>
-          </div>
-        )}
+        {status && <Toast status={status} />}
       </form>
     </>
   );
